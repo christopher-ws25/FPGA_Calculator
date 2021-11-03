@@ -1,0 +1,21 @@
+23:55:50 **** Incremental Build of configuration Debug for project testing ****
+make all 
+Building file: ../src/test1.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/test1.o" -I../../testing_bsp/microblaze_0/include -mlittle-endian -mcpu=v9.5 -mxl-soft-mul -Wl,--no-relax -MMD -MP -MF"src/test1.d" -MT"src/test1.d" -o "src/test1.o" "../src/test1.c"
+../src/test1.c:3:3: error: expected identifier or '(' before 'else'
+   else if (pushBtnLeftIn==1)
+   ^
+../src/test1.c:8:3: error: expected identifier or '(' before 'else'
+   else if (pushBtnLeftIn==0 && left_count >0)
+   ^
+../src/test1.c:15:3: error: expected identifier or '(' before 'else'
+   else if (pushBtnLeftIn==0 && left_count == 1)
+   ^
+../src/test1.c:42:6: error: expected identifier or '(' before 'switch'
+      switch (arith_op_type)
+      ^
+make: *** [src/test1.o] Error 1
+
+23:55:51 Build Finished (took 373ms)
+

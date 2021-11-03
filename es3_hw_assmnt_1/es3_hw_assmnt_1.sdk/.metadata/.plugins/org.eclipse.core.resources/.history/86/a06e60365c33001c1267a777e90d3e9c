@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include "platform.h"
+#include "xil_types.h" //Added for integer type definitions
+#include <math.h>
+#include "seg7_display.h"	// Added for 7-segment definitions
+#include "gpio_init.h"		// Added for Gpio declarations
+
+// Explicit declarations of used functions
+
+s32 adder (s32 num1, s32 num2);
+s32 subtractor (s32 minuend, s32 subtrahend);
+s32 multiplicator (s32 multiplicand, s32 multiplier);
+s32 divider (s32 dividend, s32 divisor);
+u32 modulator (u32 dividend, u32 divisor);
+void xil_print(const char*ctrl1,...);
+
+void take_input1(u16 *counter1,u16 *slideSwitchIn,u16 *display,u16 *input_numbers,u16 *input1,u16*arith_op_type)
+
+{
+	// set counter1 to display
+	*display = *counter1;
+	// shift bits for slide switch to the left then to the right by 10
+    // to isolate the first 6 switches
+	*counter1 = *slideSwitchIn << 10;
+	*counter1 = *counter1 >> 10;
+	//Read the values on the 16 slide switches
+	*slideSwitchIn = XGpio_DiscreteRead(&SLIDE_SWITCHES, 1);
+	// take values read from the slide switches as input
+	//Write the values read from the slide switches to the LEDs
+	XGpio_DiscreteWrite(&LED_OUT, 1, *slideSwitchIn);
+	*arith_op_type = *slideSwitchIn >> 12;
+}
+
+void take_input2(u16 *counter1,u16 *slideSwitchIn,u16 *display,u16 *input_numbers,u16 *input1, u16 *repeat_operation, u16 *counter2, u16*pushBtnLeftIn,u16*arith_op_type)
+
+{
+	*display = *counter2;
+	*slideSwitchIn = XGpio_DiscreteRead(&SLIDE_SWITCHES, 1);
+	XGpio_DiscreteWrite(&LED_OUT, 1, *slideSwitchIn);
+
+	*input_numbers = 1;
+	*input1 = *counter1;
+	*counter2 = *slideSwitchIn << 4;
+	*counter2 = *counter2 >> 10;
+	*repeat_operation = 0;
+	*arith_op_type = *slideSwitchIn >> 12;
+	//when left button is pressed, second input is saved
+	//and both input are put into the adder function
+	*pushBtnLeftIn = XGpio_DiscreteRead(&P_BTN_LEFT, 1);
+}
+
+void print_addition(s32*add_result,u16 *pressed,u16*input2,u16*counter2,u16*input1,u16*display,u16*input_numbers,u16*counter1,u16*arith_op_type)
+{
+	*pressed = 0;
+	*input2 = *counter2;
+	*add_result = adder(*input1,*input2);
+	*display = *add_result;
+	*input_numbers = 2;
+	*counter1 = *add_result;
+	*arith_op_type = 0;
+}
+void print_subtraction(s32*sub_result,u16 *pressed,u16*input2,u16*counter2,u16*input1,u16*display,u16*input_numbers,u16*counter1,u16*arith_op_type)
+{
+	*pressed = 0;
+	*input2 = *counter2;
+	*sub_result = subtractor(*input1,*input2);
+	*display = *sub_result;
+	*input_numbers = 2;
+	*counter1 = *sub_result;
+	*arith_op_type = 0;
+}
+void print_multiplication(s32*mul_result,u16 *pressed,u16*input2,u16*counter2,u16*input1,u16*display,u16*input_numbers,u16*counter1,u16*arith_op_type)
+{
+	*pressed = 0;
+	*input2 = *counter2;
+	*mul_result = multiplicator(*input1,*input2);
+	*display = *mul_result;
+	*input_numbers = 2;
+	*counter1 = *mul_result;
+	*arith_op_type = 0;
+}
+void print_division(s32*div_result,u16 *pressed,u16*input2,u16*counter2,u16*input1,u16*display,u16*input_numbers,u16*counter1,u16*arith_op_type)
+{
+	*pressed = 0;
+	*input2 = *counter2;
+	*div_result = divider(*input1,*input2);
+	*display = *div_result;
+	*input_numbers = 2;
+	*counter1 = *div_result;
+	*arith_op_type = 0;
+}
+
+

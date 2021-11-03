@@ -1,0 +1,11 @@
+#include "xil_types.h" //Added for integer type definitions
+s32 adder (s32 num1, s32 num2);
+s32 subtractor (s32 minuend, s32 subtrahend);
+s32 multiplicator (s32 multiplicand, s32 multiplier);
+s32 divider (s32 dividend, s32 divisor);
+u32 square_root (u32 value);
+u32 power (u32 value1, u32 value2);
+u32 exponential (u32 value);
+s32 sine (s32 value);
+
+#define pi 3.14159265359;

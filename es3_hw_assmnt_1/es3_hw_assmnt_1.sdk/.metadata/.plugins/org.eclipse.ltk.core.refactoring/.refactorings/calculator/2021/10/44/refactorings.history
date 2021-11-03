@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;calculator/src/arith_functions.c&apos; to &apos;functions.c&apos;" description="Rename resource &apos;arith_functions.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/arith_functions.c" name="functions.c" stamp="1635037994762" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;calculator/src/arith_functions.h&apos; to &apos;functions.h&apos;" description="Rename resource &apos;arith_functions.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/arith_functions.h" name="functions.h" stamp="1635038007454" updateReferences="true"/>
+</session>

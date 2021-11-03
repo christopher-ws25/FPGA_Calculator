@@ -1,0 +1,2 @@
+#include "xil_types.h" //Added for integer type definitions
+u16 take_input1 ( u16 counter1, u16 slideSwitchIn, u16 pushBtnLeftIn);

@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include "platform.h"
+#include "xil_types.h" //Added for integer type definitions
+#include <math.h>
+#include "seg7_display.h"	// Added for 7-segment definitions
+#include "gpio_init.h"		// Added for Gpio declarations
+
+// Explicit declarations of used functions
+
+s32 adder (s32 num1, s32 num2);
+s32 subtractor (s32 minuend, s32 subtrahend);
+s32 multiplicator (s32 multiplicand, s32 multiplier);
+s32 divider (s32 dividend, s32 divisor);
+u32 modulator (u32 dividend, u32 divisor);
+void xil_print(const char*ctrl1,...);
+s32 scounter1,scounter2;
+u16 take_input1 ( u16 counter1, u16 slideSwitchIn, u16 negative)
+{
+	XGpio_DiscreteWrite(&LED_OUT, 1,  slideSwitchIn);
+	counter1 =  slideSwitchIn << 10;
+	counter1 =  counter1 >> 10;
+	if (negative == 0)
+	{
+		return counter1;
+	}
+	else if (negative == 1)
+	{
+		scounter1 = counter1;
+		scounter1 = -scounter1;
+		return scounter1;
+	}
+	return 0;
+}
+u16 take_input2 ( u16 counter2, u16 slideSwitchIn, u16 negative)
+{
+	 XGpio_DiscreteWrite(&LED_OUT, 1,  slideSwitchIn);
+	 counter2 =  slideSwitchIn << 4;
+	 counter2 =  counter2 >> 10;
+	if (negative == 0)
+	{
+		return counter2;
+	}
+	else if (negative == 1)
+	{
+		scounter2 = counter2;
+		return -scounter2;
+	}
+	return 0;
+}
+
+
