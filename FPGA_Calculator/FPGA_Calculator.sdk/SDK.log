@@ -810,3 +810,6 @@ com.xilinx.sdk.targetmanager.TMException: Could not detect MDM peripheral on har
 14:06:13 INFO  : Processor reset is completed for microblaze_0
 14:10:36 INFO  : Processor reset is completed for microblaze_0
 14:35:20 ERROR : Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near 
+14:15:29 INFO  : Launching XSDB server: xsdb.bat -s C:/Xilinx/SDK/2015.2/scripts/xsdb/xsdb/xsdb-server.tcl
+14:15:32 INFO  : XSDB server has started successfully.
+14:15:34 INFO  : Processing command line option -hwspec C:/ES3/Assessment_1_Calculator/Assessment_1_Calculator/Calculator/FPGA_Calculator/FPGA_Calculator.sdk/top.hdf.
